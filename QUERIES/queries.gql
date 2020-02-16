@@ -1,0 +1,17 @@
+mutation {
+  CreateAuto(
+		placa:"PCB1046",
+  ){
+    placa
+  }
+}
+
+
+{
+  GetAutos{
+      placa,
+  }
+}
+
+
+

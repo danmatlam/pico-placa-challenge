@@ -1,0 +1,21 @@
+import "@babel/polyfill";
+import express from "express";
+import graphQLHTTP from 'express-graphql';
+import cors from 'cors'
+import schema from "./graphQL/";
+const app = express();
+import mongo from './mongoDb';
+mongo.connection.once('open', (res)=> {});
+
+
+app.use('/graphql',graphQLHTTP({
+  schema:schema,
+  graphiql:true
+}));
+
+app.use(cors());
+app.set('port', process.env.PORT || 3001);
+
+
+app.listen(app.get("port"), ()=> console.log('server'));
+
