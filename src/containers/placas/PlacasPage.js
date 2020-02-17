@@ -12,7 +12,8 @@ import LadingImage from '../../images/landing.png';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import { CREATE_CONSULTA, GET_CONSULTAS } from './PlacasQueries'
 import Consultas from '../../components/placas/Consultas';
-
+import TestForm from '../../components/placas/TestForm'
+import TestForm2 from '../../components/placas/TestForm2'
 
 const PlacasPage = (props) => {
   moment.locale('es')
@@ -40,9 +41,12 @@ const PlacasPage = (props) => {
   return (
     <>
       <Section>
+    
         <h1>
           Consulta tu pico y placa
         </h1>
+
+
       </Section>
 
       <Row>
