@@ -8,9 +8,9 @@ import moment from 'moment';
 const hourFormat = 'HH:mm';
 
 
-const PicoYPlacaForm = ({ setVisible ,setResponse}) => {
+const PicoYPlacaForm = ({ setVisible ,setResponse, handleSubmit}) => {
     const [placa, setPlaca] = useState('PCB1046');
-    const [fecha, setFecha] = useState('2020/02/26');
+    const [fecha, setFecha] = useState(moment().format('YYYY/MM/DD'));
     const [hora, setHora] = useState(moment(new Date(), hourFormat));
 
 
@@ -19,12 +19,14 @@ const PicoYPlacaForm = ({ setVisible ,setResponse}) => {
         const newObj = {
             placa,
             fecha:fecha,
-            hora,
+            hora: moment(hora).format('HH:mm'),
             isLocked: checkBlocked(placa, fecha, hora)
         }
+    
        console.log(newObj);
         setVisible(true)
         setResponse(newObj);
+        handleSubmit(newObj);
     }
 
 

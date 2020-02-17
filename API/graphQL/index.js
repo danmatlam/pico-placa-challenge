@@ -1,13 +1,14 @@
 const graphql = require('graphql');
 import { GraphQLObjectType, GraphQLSchema} from 'graphql';
 import { GetAutos, CreateAuto } from './autoController';
-import {CreateConsulta} from './consultaController'
+import {CreateConsulta,GetConsultas} from './consultaController'
 
 // Consultas
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
       GetAutos,
+      GetConsultas,
     },
   });
 

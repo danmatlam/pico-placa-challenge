@@ -1,14 +1,23 @@
 import React , {useState}from 'react'
 import 'antd/dist/antd.css';
 import './App.css'
-import PicoYPlacaPage from './pages/PicoYPlacaPage';
+import PlacasPage from './containers/placas/PlacasPage';
+
+import { ApolloProvider } from '@apollo/react-hooks';
+import ApolloClient from 'apollo-boost';
+const client = new ApolloClient({
+  uri: '/graphql',
+});
+
 
 const App = () => {
 
   return (
-    <div>
-      <PicoYPlacaPage/>
-    </div>
+    
+    <ApolloProvider client={client}>
+
+      <PlacasPage/>
+      </ApolloProvider>
   )
 }
 

@@ -1,11 +1,19 @@
 mutation {
-  CreateAuto(
-		placa:"PCB1046",
+  CreateConsulta(
+  	placa:"PCB1046"
+    fecha:"PCB1046"
+    hora:"PCB1046"
+    isLocked:true
   ){
+    id
     placa
+    fecha
+    hora
   }
 }
 
+
+///////
 
 {
   GetAutos{

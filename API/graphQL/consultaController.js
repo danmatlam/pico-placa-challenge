@@ -1,4 +1,11 @@
-import { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLBoolean, GraphQLNonNull } from "graphql";
+import { 
+    GraphQLList,
+    GraphQLObjectType, 
+    GraphQLID, 
+    GraphQLString, 
+    GraphQLBoolean, 
+    GraphQLNonNull 
+} from "graphql";
 import consultaModel from "../mongoDb/consultaModel";
 
 
@@ -10,13 +17,21 @@ const ConsultaType = new GraphQLObjectType({
         placa:{type:GraphQLString},
         fecha:{type:GraphQLString},
         hora: {type:GraphQLString},
-
         isLocked:{type:GraphQLBoolean},
     })
 });
 
-//MUTACION METODOS DE ESCRITURA
 
+
+// METODOS DE LECTURA
+const GetConsultas = {
+    type: new GraphQLList(ConsultaType),
+    resolve(parent, args) {
+        return consultaModel.find({}).sort({_id:-1})
+    }
+};
+
+//MUTACION METODOS DE ESCRITURA
 const CreateConsulta  = {
     type: ConsultaType,
     args: {
@@ -36,4 +51,4 @@ const CreateConsulta  = {
 
     }
 }
-export { CreateConsulta, }
+export { CreateConsulta , GetConsultas}
