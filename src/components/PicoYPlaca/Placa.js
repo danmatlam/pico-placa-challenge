@@ -12,7 +12,7 @@ const Placa = ({ placa }) => {
             <PlacaBox>
                 <Title>ECUADOR</Title>
                 <PlacaText>
-                    {placaStr}<span style={{color:'red'}}>{placaEnding}</span>
+                    {placaStr}<span style={{fontWeight:700}}>{placaEnding}</span>
                 </PlacaText>
                 
             </PlacaBox>
@@ -30,7 +30,7 @@ const Container = styled.div`
     display:flex;
     justify-content:center;
     align-items:center;
-    padding:.9em;
+    /* padding:.9em; */
 `
 
 
@@ -39,7 +39,7 @@ const PlacaBox = styled.div`
     flex-direction:column;
     text-align: center;
     border-radius:12px;
-    
+    width:100%;
 
     @media only screen and  (min-width: 0)   and (max-width: 480px)  {
         width:60%;

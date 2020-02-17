@@ -9,7 +9,7 @@ import moment from 'moment';
 import 'moment/locale/es'  // without this line it didn't work
 import { Alert } from 'antd';
 import Restricciones from '../components/PicoYPlaca/Restricciones';
-
+import LadingImage from  '../images/landing.png'
 const PicoYPlacaPage = (props) => {
   moment.locale('es')
 
@@ -18,7 +18,10 @@ const PicoYPlacaPage = (props) => {
   return (
     <div>
       <Row>
-        <Col xs={24} sm={24} md={24} lg={24}>
+        <Col xs={24} sm={24} md={12} lg={12} style={{display:"flex", justifyContent:'center'}} >
+          <img src={LadingImage} style={{ width:"72%"}}></img>
+        </Col>
+        <Col xs={24} sm={24} md={12} lg={12} >
           <PicoYPlacaForm setVisible={setVisible} setResponse={setResponse} />
         </Col>
       </Row>
@@ -32,31 +35,29 @@ const PicoYPlacaPage = (props) => {
           response &&
           <>
             <Section>
-              <Restricciones fecha={response.fecha && moment(response.fecha).format('ddd')} />
+              <Placa placa={response.placa}></Placa>
             </Section>
             <Section>
               {response.fecha && response.hora &&
 
-              `Fecha: ${moment(response.fecha).format('dddd')} ${response.fecha}
+                `Consulta: ${moment(response.fecha).format('dddd DD/MM/YYYY')} 
                ${ moment(response.hora).format('HH:mm')}
               `
-          
-               
-
               }
-            </Section>
-
-            <Section>
-              <Placa placa={response.placa}></Placa>
             </Section>
             <Section>
               {
                 !response.isLocked
                   ? <Alert message="Puede circular" type="success" showIcon />
-                  : <Alert message="No puede ciruclar" type="error" showIcon />
+                  : <Alert message="No puede circular" type="error" showIcon />
               }
             </Section>
 
+
+
+            <Section>
+              <Restricciones fecha={response.fecha && response.fecha} />
+            </Section>
           </>
         }
       </Modal>

@@ -6,12 +6,10 @@ const format = 'hh:mm';
 const auxCheck =(before, after, hour)=>{
   const beforeTime = moment(before, format);
   const afterTime = moment(after, format);
-  const _hour = hour.format(format)
-  console.log  ( `${_hour} is between ${before} - ${after}  `+ hour.isBetween(beforeTime,afterTime))
-  return hour.isBetween(beforeTime,afterTime);
+  return moment(hour, format).isBetween(beforeTime,afterTime);
 }
 const checkHours = (hour) => {
-    const check = auxCheck('7:00','9:31', hour) || auxCheck('16:00','19:31', hour) ;
+    const check = auxCheck('6:59','9:31', hour) || auxCheck('15:59','19:31', hour) ;
     return  check;
 
 }
@@ -33,15 +31,24 @@ const checkBlocked = (placa, fecha, hour) => {
 
   const checkDay =  dayLocked ? true: false;
   const checkHour = checkHours(hour);
-
-  console.log('day:'+checkDay)
-  console.log('hour:'+checkHour)
-
   return checkDay && checkHour
 }
 
 
-export { checkBlocked }
+const calculateNextDay = day => {
+  const today = moment().isoWeekday();
+  if (today <= day) {
+    return moment().isoWeekday(day);
+  } else {
+    return moment()
+      .add(1, "weeks")
+      .isoWeekday(day);
+  }
+};
+
+
+
+export { checkBlocked,calculateNextDay }
 
 
 
