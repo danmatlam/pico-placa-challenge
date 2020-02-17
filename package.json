@@ -19,22 +19,29 @@
     "moment": "^2.24.0",
     "mongoose": "^5.9.1",
     "nodemon": "^2.0.2",
+    "path": "^0.12.7",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.4.0",
     "styled-components": "^5.0.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
     "@babel/node": "^7.8.4",
     "concurrently": "^5.1.0"
   },
   "scripts": {
-    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev-front": "react-scripts start",
-    "dev-api": "nodemon --exec babel-node API/server.js",
-    "dev": "concurrently \"npm run dev-front\" \"npm run dev-api\""
+    "dev:client": "react-scripts start",
+    "dev:api": "nodemon --exec babel-node API/server.js",
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:api\"",
+    "build:client": "react-scripts build",
+    "build:api": "babel API --out-dir dist/API --copy-files",
+    "build": "concurrently \"npm run build:client\" \"npm run build:api\"",
+    "postbuild": "rm -rv ./dist/build && mv ./build ./dist/build",
+    "start": "node  dist/API/server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
